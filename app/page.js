@@ -10,12 +10,17 @@ import Mina from '../public/assets/slotItems/Mina.jpg';
 import Jose from '../public/assets/slotItems/Jose.jpg';
 import TonyAlex from '../public/assets/slotItems/TonyAlex.jpg';
 import JJKev from '../public/assets/slotItems/JJKev.jpg';
+import Odds from '../public/assets/Odds.jpg';
+import Paytable from '../public/assets/Paytable.jpg';
+import Image from 'next/image';
 
 export default function Home() {
   const [credits, setCredits] = useState(0);
   const [password, setPassword] = useState('');
   const [sounds, setSounds] = useState([]);
   const [jackpotSounds, setJackpotSounds] = useState([]);
+  const [loseSounds, setLoseSounds] = useState([]);
+  const [totalSpins, setTotalSpins] = useState(0);
 
   const correctPassword = 'Benny';
   const tempPassword = 'test';
@@ -62,8 +67,6 @@ export default function Home() {
         new Audio('/assets/slotSounds/Love.wav'),
         new Audio('/assets/slotSounds/Ohh.wav'),
         new Audio('/assets/slotSounds/Rice.wav'),
-        new Audio('/assets/slotSounds/ToxicHyerim.wav'),
-        new Audio('/assets/slotSounds/ToxicKevin.wav'),
         new Audio('/assets/slotSounds/What.wav'),
         new Audio('/assets/slotSounds/Genius.wav'),
       ];
@@ -71,6 +74,22 @@ export default function Home() {
     sounds.splice(-3);
     // Assign sounds to state or wherever you need them
     setSounds(sounds); // Assuming you want to save the sounds to state
+  }, []);
+
+  useEffect(() => {
+    let loseSounds;
+
+    if (typeof window !== 'undefined') {
+      // Create Audio objects only in the browser
+      loseSounds = [
+        new Audio('/assets/slotSounds/ToxicHyerim.wav'),
+        new Audio('/assets/slotSounds/ToxicKevin.wav'),
+        new Audio('/assets/slotSounds/Genius.wav'),
+        new Audio('/assets/slotSounds/What.wav'),
+      ];
+    }
+    // Assign sounds to state or wherever you need them
+    setLoseSounds(loseSounds); // Assuming you want to save the sounds to state
   }, []);
 
   useEffect(() => {
@@ -112,6 +131,7 @@ export default function Home() {
 
   const rollSlots = (betSize) => {
     if (credits >= betSize) {
+      setTotalSpins(totalSpins + 1);
       const rollingAudio = new Audio('/assets/slotSounds/Rolling.wav');
       rollingAudio.volume = 0.5;
       rollingAudio.currentTime = 0;
@@ -128,6 +148,11 @@ export default function Home() {
       setCredits(credits - betSize);
       console.log('current credits', credits);
       setRolling(true);
+      const adjustedImages = calculateAdjustedWeights();
+      const totalWeight = adjustedImages.reduce((sum, item) => sum + item.weight, 0);
+      adjustedImages.forEach(item => {
+        item.normalizedProbability = item.weight / totalWeight;
+      });
 
       const getRandomImage = () => {
         const rand = Math.random();
@@ -138,7 +163,7 @@ export default function Home() {
             return item.image;
           }
         }
-        return images[images.length - 1].image; // Fallback to the last image
+        return adjustedImages[adjustedImages.length - 1].image; // Fallback to the last image
       };
 
       const roll = () => {
@@ -185,36 +210,36 @@ export default function Home() {
       // all match
       if (firstSlotSrc === secondSlotSrc && firstSlotSrc === thirdSlotSrc && firstSlotSrc === fourthSlotSrc && firstSlotSrc === fifthSlotSrc) {
         console.log('all matches!', firstSlotSrc)
-        if (secondSlotSrc.includes('Mina')) {
+        if (firstSlotSrc.includes('Mina')) {
           playJackpotSound();
           setCredits(credits + (betSize * 5000));
         } else {
           playRandomSound();
         }
-        if (secondSlotSrc.includes('Thao')) {
+        if (firstSlotSrc.includes('Thao')) {
           setCredits(credits + (betSize * 3500));
-          result(betSize * 850);
+          result(betSize * 3500);
         } else if (firstSlotSrc.includes('Group')) {
           setCredits(credits + (betSize * 2500));
-          result(betSize * 750);
+          result(betSize * 2500);
         } else if (firstSlotSrc.includes('Kevin')) {
           setCredits(credits + (betSize * 2000));
-          result(betSize * 300);
+          result(betSize * 2000);
         } else if (firstSlotSrc.includes('JJKev')) {
           setCredits(credits + (betSize * 1500));
-          result(betSize * 150);
+          result(betSize * 1500);
         } else if (firstSlotSrc.includes('TonyAlex')) {
           setCredits(credits + (betSize * 750));
-          result(betSize * 75);
+          result(betSize * 750);
         } else if (firstSlotSrc.includes('Jose')) {
           setCredits(credits + (betSize * 500));
-          result(betSize * 50);
+          result(betSize * 500);
         } else if (firstSlotSrc.includes('John')) {
           setCredits(credits + (betSize * 250));
-          result(betSize * 25);
+          result(betSize * 250);
         } else if (firstSlotSrc.includes('Hyerim')) {
           setCredits(credits + (betSize * 100));
-          result(betSize * 10);
+          result(betSize * 100);
         }
       }
       // 4 matches
@@ -237,35 +262,37 @@ export default function Home() {
         }
 
         console.log('Four matches!!', matchedSrc);
-
         if (matchedSrc.includes('Mina')) {
           playJackpotSound();
+          setCredits(credits + (betSize * 750));
+          result(betSize * 750);
+        } else {
+          playRandomSound();
+        }
+        if (matchedSrc.includes('Thao')) {
+          setCredits(credits + (betSize * 500));
+          result(betSize * 500);
+        } else if (matchedSrc.includes('Group')) {
+          setCredits(credits + (betSize * 300));
+          result(betSize * 300);
+        } else if (matchedSrc.includes('Kevin')) {
+          setCredits(credits + (betSize * 200));
+          result(betSize * 200);
+        } else if (matchedSrc.includes('JJKev')) {
+          setCredits(credits + (betSize * 125));
+          result(betSize * 125);
+        } else if (matchedSrc.includes('TonyAlex')) {
           setCredits(credits + (betSize * 100));
           result(betSize * 100);
-        } else if (matchedSrc.includes('Thao')) {
+        } else if (matchedSrc.includes('Jose')) {
           setCredits(credits + (betSize * 75));
           result(betSize * 75);
-        } else if (matchedSrc.includes('Group')) {
+        } else if (matchedSrc.includes('John')) {
           setCredits(credits + (betSize * 50));
           result(betSize * 50);
-        } else if (matchedSrc.includes('Kevin')) {
-          setCredits(credits + (betSize * 25));
-          result(betSize * 25);
-        } else if (matchedSrc.includes('JJKev')) {
-          setCredits(credits + (betSize * 15));
-          result(betSize * 15);
-        } else if (matchedSrc.includes('TonyAlex')) {
-          setCredits(credits + (betSize * 10));
-          result(betSize * 10);
-        } else if (matchedSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 5));
-          result(betSize * 5);
-        } else if (matchedSrc.includes('John')) {
-          setCredits(credits + (betSize * 3));
-          result(betSize * 3);
         } else if (matchedSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 2));
-          result(betSize * 2);
+          setCredits(credits + (betSize * 30));
+          result(betSize * 30);
         }
       }
       else if (
@@ -304,42 +331,56 @@ export default function Home() {
           matchedSrc = thirdSlotSrc;
         }
         console.log('Three matches!!', matchedSrc);
-
         if (matchedSrc.includes('Mina')) {
+          playJackpotSound();
+          setCredits(credits + (betSize * 250));
+          result(betSize * 250);
+        } else {
+          playRandomSound();
+        }
+        if (matchedSrc.includes('Thao')) {
+          setCredits(credits + (betSize * 175));
+          result(betSize * 175);
+        } else if (matchedSrc.includes('Group')) {
+          setCredits(credits + (betSize * 125));
+          result(betSize * 125);
+        } else if (matchedSrc.includes('Kevin')) {
+          setCredits(credits + (betSize * 75));
+          result(betSize * 75);
+        } else if (matchedSrc.includes('JJKev')) {
           setCredits(credits + (betSize * 50));
           result(betSize * 50);
-        } else if (matchedSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 35));
-          result(betSize * 35);
-        } else if (matchedSrc.includes('Group')) {
+        } else if (matchedSrc.includes('TonyAlex')) {
           setCredits(credits + (betSize * 25));
           result(betSize * 25);
-        } else if (matchedSrc.includes('Kevin')) {
+        } else if (matchedSrc.includes('Jose')) {
           setCredits(credits + (betSize * 15));
           result(betSize * 15);
-        } else if (matchedSrc.includes('JJKev')) {
+        } else if (matchedSrc.includes('John')) {
           setCredits(credits + (betSize * 10));
           result(betSize * 10);
-        } else if (matchedSrc.includes('TonyAlex')) {
+        } else if (matchedSrc.includes('Hyerim')) {
           setCredits(credits + (betSize * 5));
           result(betSize * 5);
-        } else if (matchedSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 3));
-          result(betSize * 3);
-        } else if (matchedSrc.includes('John')) {
-          setCredits(credits + (betSize * 2));
-          result(betSize * 2);
-        } else if (matchedSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 1));
-          result(betSize * 1);
         }
       }
       else {
         result(null);
+        playLoseSound();
       }
     } else {
       console.log('One or more slot elements not found.');
     }
+  };
+  const calculateAdjustedWeights = () => {
+    // Adjust weights based on totalSpins
+    const progressiveWeight = (totalSpins / 2000) * 2;
+    return images.map(item => {
+      if (item.image === Mina) {
+        return { ...item, weight: item.weight + progressiveWeight };
+      }
+      return item;
+    });
   };
 
   const playRandomSound = () => {
@@ -349,6 +390,21 @@ export default function Home() {
         randomSound.volume = 1;
         randomSound.currentTime = 0;
         randomSound.play().catch(error => {
+          console.error('Error playing sound:', error);
+        });
+      }
+    }
+  };
+  const playLoseSound = () => {
+    if (typeof window !== 'undefined') {
+      if (Math.random() < 0.75) {
+        return;
+      }
+      const loseSound = loseSounds[Math.floor(Math.random() * loseSounds.length)];
+      if (loseSound) {
+        loseSound.volume = 1;
+        loseSound.currentTime = 0;
+        loseSound.play().catch(error => {
           console.error('Error playing sound:', error);
         });
       }
@@ -390,23 +446,6 @@ export default function Home() {
         Happy Birthday Chloe!
       </h1>
       <button onClick={playJackpotSound}>test</button>
-      <div className='absolute bottom-10 left-50 text-center bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
-        <button
-          onClick={handleCreditIncrease}
-          className='text-xl font-bold  text-center mt-2'
-        >
-          Need more credits?
-        </button>
-        <input
-          type='password'
-          placeholder='Enter password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          onKeyDown={handleKeyDown}
-          className='flex text-xl font-bold bg-gray-600 bg-opacity-75 rounded-lg shadow-lg mt-2 p-3 text-center'
-        />
-      </div>
-
       <div className='mt-20'>
         <h2 className='text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
           Number of credits: {credits}
@@ -466,35 +505,35 @@ export default function Home() {
       `}</style>
         </div>
       </div>
-      <div>
-        <h2 id='Result' className='mt-16 text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
-          Good Luck!
-        </h2>
+      <div className='flex'>
+        <div className=''>
+          <Image src={Paytable} className='' width={100} />
+        </div>
+        <div>
+          <h2 id='Result' className='mt-16 text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
+            Good Luck!
+          </h2>
+          <div className='text-center bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
+            <button
+              onClick={handleCreditIncrease}
+              className='text-xl font-bold  text-center mt-2'
+            >
+              Need more credits?
+            </button>
+            <input
+              type='password'
+              placeholder='Enter password'
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              onKeyDown={handleKeyDown}
+              className='flex text-xl font-bold bg-gray-600 bg-opacity-75 rounded-lg shadow-lg mt-2 p-3 text-center'
+            />
+          </div>
+        </div>
+        <div className=''>
+          <Image src={Odds} className='' width={100} />
+        </div>
       </div>
     </div >
   )
 }
-
-
-// { image: Mina, weight: 1 },      // 1/1000
-// { image: Thao, weight: 1.26 },      // 1/500
-// { image: Group, weight: 1.587 },     // 1/250
-// { image: Kevin, weight: 2.154 },     // 1/100
-// { image: JJKev, weight: 2.714 },   // 1/50
-// { image: TonyAlex, weight: 3.42 },  // 1/25
-// { image: Jose, weight: 4.642 },      // 1/10
-// { image: John, weight: 5.848 },      // 1/5
-// { image: Hyerim, weight: 7.368 },    // 2/5    2x - 3x
-
-
-// const probabilities = {
-//   'Mina': 1 / 1000,
-//   'Thao': 1 / 500,
-//   'Group': 1 / 250,
-//   'Kevin': 1 / 100,
-//   'JJKev': 1 / 50,
-//   'TonyAlex': 1 / 25,
-//   'Jose': 1 / 10,
-//   'John': 1 / 5,
-//   'Hyerim': 2 / 5
-// };
