@@ -1,6 +1,6 @@
 'use client'
 import background from '../public/assets/background.jpg'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Group from '../public/assets/slotItems/Group.jpg';
 import Hyerim from '../public/assets/slotItems/Hyerim.jpg';
 import John from '../public/assets/slotItems/John.jpg';
@@ -14,6 +14,7 @@ import JJKev from '../public/assets/slotItems/JJKev.jpg';
 export default function Home() {
   const [credits, setCredits] = useState(0);
   const [password, setPassword] = useState('');
+  const [sounds, setSounds] = useState([]);
 
   const correctPassword = 'Benny';
   const tempPassword = 'test';
@@ -63,16 +64,30 @@ export default function Home() {
     { image: Hyerim, weight: 7.368 },    // 2/5
   ];
 
-  const Loud = new Audio('/assets/slotSounds/Loud.wav');
-  const Love = new Audio('/assets/slotSounds/Love.wav');
-  const Ohh = new Audio('/assets/slotSounds/Ohh.wav');
-  const Rice = new Audio('/assets/slotSounds/Rice.wav');
-  const ToxicHyerim = new Audio('/assets/slotSounds/ToxicHyerim.wav');
-  const ToxicKevin = new Audio('/assets/slotSounds/ToxicKevin.wav');
-  const What = new Audio('/assets/slotSounds/What.wav');
-  const Genius = new Audio('/assets/slotSounds/Genius.wav');
 
-  const sounds = [Loud, Love, Ohh, Rice, ToxicHyerim, ToxicKevin, What, Genius]
+  useEffect(() => {
+    let rollingAudio;
+    let sounds;
+
+    if (typeof window !== 'undefined') {
+      // Create Audio objects only in the browser
+      rollingAudio = new Audio('/assets/slotSounds/Rolling.wav');
+      sounds = [
+        new Audio('/assets/slotSounds/Loud.wav'),
+        new Audio('/assets/slotSounds/Love.wav'),
+        new Audio('/assets/slotSounds/Ohh.wav'),
+        new Audio('/assets/slotSounds/Rice.wav'),
+        new Audio('/assets/slotSounds/ToxicHyerim.wav'),
+        new Audio('/assets/slotSounds/ToxicKevin.wav'),
+        new Audio('/assets/slotSounds/What.wav'),
+        new Audio('/assets/slotSounds/Genius.wav')
+      ];
+    }
+
+    // Assign sounds to state or wherever you need them
+    setSounds(sounds); // Assuming you want to save the sounds to state
+  }, []);
+
   const [slots, setSlots] = useState([images[0], images[1], images[2]]);
   const [rolling, setRolling] = useState(false);
   const totalWeight = images.reduce((sum, item) => sum + item.weight, 0);
@@ -218,9 +233,6 @@ export default function Home() {
         }
       }
       else {
-        Genius.volume = 0.8;
-        Genius.currentTime = 0;
-        Genius.play();
       }
     } else {
       console.log('One or more slot elements not found.');
@@ -228,17 +240,17 @@ export default function Home() {
   };
 
   const playRandomSound = () => {
-    const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
-    if (randomSound) {
-      randomSound.volume = 1;
-      randomSound.currentTime = 0;
-      randomSound.play().catch(error => {
-        console.error('Error playing sound:', error);
-      });
-    } else {
-      console.error('Selected sound is undefined.');
+    if (typeof window !== 'undefined') {
+      const randomSound = sounds[Math.floor(Math.random() * sounds.length)];
+      if (randomSound) {
+        randomSound.volume = 1;
+        randomSound.currentTime = 0;
+        randomSound.play().catch(error => {
+          console.error('Error playing sound:', error);
+        });
+      }
     }
-  }
+  };
 
   return (
     <div style={backgroundImageStyle}>
