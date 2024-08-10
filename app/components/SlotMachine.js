@@ -1,77 +1,31 @@
-'use client'
-import testImage from '../../public/assets/slotItems/Casino.jpg'
-import React, { useState, useEffect } from 'react';
+import Hyerim from '../public/assets/slotItems/Hyerim.jpg';
+import Kevin from '../public/assets/slotItems/Kevin.jpg';
+import Mina from '../public/assets/slotItems/Mina.jpg';
 
-export default function SlotMachine() {
-  const images = [
-    'https://picsum.photos/150?random=1',
-    'https://picsum.photos/150?random=2',
-    'https://picsum.photos/150?random=3',
-    'https://picsum.photos/150?random=4',
-    'https://picsum.photos/150?random=5',
-    'https://picsum.photos/150?random=6',
-    'https://picsum.photos/150?random=7',
-    'https://picsum.photos/150?random=8',
-
+const SlotMachine = () => {
+  // Define your initial slots
+  const initialSlots = [
+    { src: { Mina } },
+    { src: { Kevin } },
+    { src: { Hyerim } }
   ];
 
-  const [slots, setSlots] = useState([images[0], images[1], images[2]]);
+  // Initialize state with initialSlots
+  const [slots, setSlots] = useState(initialSlots);
   const [rolling, setRolling] = useState(false);
 
-  const randomizeImages = () => {
-    setRolling(true);
-
-    const roll = () => {
-      setSlots([
-        images[Math.floor(Math.random() * images.length)],
-        images[Math.floor(Math.random() * images.length)],
-        images[Math.floor(Math.random() * images.length)],
-      ]);
-    };
-
-    let rollCount = 0;
-    const interval = setInterval(() => {
-      roll();
-      rollCount++;
-      if (rollCount > 10) { // Stop rolling after a few cycles
-        clearInterval(interval);
-        setRolling(false);
-      }
-    }, 100); // Adjust the speed of the roll
-
-  };
-
   return (
-    <div style={{ textAlign: 'center', marginTop: '50px' }}>
-      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-        {slots.map((slot, index) => (
-          <div key={index} className={`slot ${rolling ? 'rolling' : ''}`}>
-            <img
-              src={slot}
-              alt={`slot-${index}`}
-              style={{ width: '150px', height: '150px', objectFit: 'cover' }}
-            />
-            <img src={testImage} alt='testing' />
-          </div>
-        ))}
-      </div>
-      <button onClick={randomizeImages} disabled={rolling} className="p-3 bg-blue-500 text-white font-bold rounded">
-        Spin!
-      </button>
-      <style jsx>{`
-        .slot {
-          margin: 0 10px;
-          overflow: hidden;
-          position: relative;
-        }
-        .rolling img {
-          animation: roll 0.1s infinite linear;
-        }
-        @keyframes roll {
-          0% { transform: translateY(-100%); }
-          100% { transform: translateY(0); }
-        }
-      `}</style>
+    <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+      {slots.map((slot, index) => (
+        <div key={index} className={`slot ${rolling ? 'rolling' : ''}`}>
+          <img
+            id={`slot${index}`}
+            src={slot.src}
+            alt={`slot-${index}`}
+            style={{ width: '500px', height: '500px', objectFit: 'cover' }}
+          />
+        </div>
+      ))}
     </div>
   );
-}
+};
