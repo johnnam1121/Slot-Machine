@@ -13,6 +13,7 @@ import JJKev from '../public/assets/slotItems/JJKev.jpg';
 import Odds from '../public/assets/Odds.jpg';
 import Paytable from '../public/assets/Paytable.jpg';
 import Image from 'next/image';
+import Modal from './components/Modal';
 
 export default function Home() {
   const [credits, setCredits] = useState(0);
@@ -506,17 +507,21 @@ export default function Home() {
         </div>
       </div>
       <div className='flex'>
-        <div className=''>
-          <Image src={Paytable} className='' width={100} />
+        <div className="flex items-center justify-center mx-10 text-center">
+          <Modal
+            modalTitle='Paytable Info'
+            modalText='These are the payouts if you get matches. For example, 3 images of Hyerim will get you 5x your bet size'
+            modalTextTwo='This slot machine is progressive, meaning there is a jackpot guaranteed once every 5,000 spins!'
+            modalImage={Paytable} />
         </div>
         <div>
-          <h2 id='Result' className='mt-16 text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
+          <h2 id='Result' className='mb-2 mt-16 text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
             Good Luck!
           </h2>
           <div className='text-center bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
             <button
               onClick={handleCreditIncrease}
-              className='text-xl font-bold  text-center mt-2'
+              className='text-xl font-bold text-center'
             >
               Need more credits?
             </button>
@@ -530,8 +535,12 @@ export default function Home() {
             />
           </div>
         </div>
-        <div className=''>
-          <Image src={Odds} className='' width={100} />
+        <div className="flex items-center justify-center mx-10 text-center">
+          <Modal
+            modalTitle='Slots Odds'
+            modalText='These are the odds of hitting specific matches for 10,000 simulations.'
+            modalTextTwo=''
+            modalImage={Odds} />
         </div>
       </div>
     </div >
