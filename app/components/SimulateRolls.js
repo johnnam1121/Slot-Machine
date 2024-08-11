@@ -171,39 +171,39 @@
 
 
 // Winnings
-// console.log('Paytable\n');
-// console.log('All 5 Matches');
-// console.log('Minas - 5000x - JACKPOT');
-// console.log('Thaos - 3500x - 2nd place Jackpot');
-// console.log('Groups - 2500x - 3rd place Jackpot');
-// console.log('Kevins - 2000x');
-// console.log('JJKevs - 1500x');
-// console.log('TonyAlexs - 750x');
-// console.log('Joses - 500x');
-// console.log('Johns - 250x');
-// console.log('Hyerims - 100x\n');
+console.log('Paytable\n');
+console.log('All 5 Matches');
+console.log('Minas - 5000x - JACKPOT');
+console.log('Thaos - 3500x - 2nd place Jackpot');
+console.log('Groups - 2500x - 3rd place Jackpot');
+console.log('Kevins - 2000x');
+console.log('JJKevs - 1500x');
+console.log('TonyAlexs - 750x');
+console.log('Joses - 500x');
+console.log('Johns - 250x');
+console.log('Hyerims - 100x\n');
 
-// console.log('4 Matches');
-// console.log('Minas - 750x');
-// console.log('Thaos - 500x');
-// console.log('Groups - 300x');
-// console.log('Kevins - 200x');
-// console.log('JJKevs - 125x');
-// console.log('TonyAlexs - 100x');
-// console.log('Joses - 75x');
-// console.log('Johns - 50x');
-// console.log('Hyerims - 30x\n');
+console.log('4 Matches');
+console.log('Minas - 750x');
+console.log('Thaos - 500x');
+console.log('Groups - 300x');
+console.log('Kevins - 200x');
+console.log('JJKevs - 125x');
+console.log('TonyAlexs - 100x');
+console.log('Joses - 75x');
+console.log('Johns - 50x');
+console.log('Hyerims - 30x\n');
 
-// console.log('3 Matches');
-// console.log('Minas - 250x');
-// console.log('Thaos - 175x');
-// console.log('Groups - 125x');
-// console.log('Kevins - 75x');
-// console.log('JJKevs - 50x');
-// console.log('TonyAlexs - 25x');
-// console.log('Joses - 15x');
-// console.log('Johns - 10x');
-// console.log('Hyerims - 5x\n');
+console.log('3 Matches');
+console.log('Minas - 250x');
+console.log('Thaos - 100x');
+console.log('Groups - 50x');
+console.log('Kevins - 25x');
+console.log('JJKevs - 15x');
+console.log('TonyAlexs - 10x');
+console.log('Joses - 5x');
+console.log('Johns - 3x');
+console.log('Hyerims - 2x\n');
 
 // progressive jackpot test
 // const images = [
@@ -298,181 +298,181 @@
 // const simulationResults = simulateSlots(1000);
 // console.log(simulationResults);
 
-const images = [
-  { image: 'Mina.jpg', weight: 1 },       // 1/1000
-  { image: 'Thao.jpg', weight: 1.26 },     // 1/500
-  { image: 'Group.jpg', weight: 1.587 },   // 1/250
-  { image: 'Kevin.jpg', weight: 2.154 },   // 1/100
-  { image: 'JJKev.jpg', weight: 2.714 },   // 1/50
-  { image: 'TonyAlex.jpg', weight: 3.42 }, // 1/25
-  { image: 'Jose.jpg', weight: 4.642 },    // 1/10
-  { image: 'John.jpg', weight: 5.848 },    // 1/5
-  { image: 'Hyerim.jpg', weight: 7.368 },  // 2/5
-];
+// const images = [
+//   { image: 'Mina.jpg', weight: 1 },       // 1/1000
+//   { image: 'Thao.jpg', weight: 1.26 },     // 1/500
+//   { image: 'Group.jpg', weight: 1.587 },   // 1/250
+//   { image: 'Kevin.jpg', weight: 2.154 },   // 1/100
+//   { image: 'JJKev.jpg', weight: 2.714 },   // 1/50
+//   { image: 'TonyAlex.jpg', weight: 3.42 }, // 1/25
+//   { image: 'Jose.jpg', weight: 4.642 },    // 1/10
+//   { image: 'John.jpg', weight: 5.848 },    // 1/5
+//   { image: 'Hyerim.jpg', weight: 7.368 },  // 2/5
+// ];
 
-// Initialize counts for each image
-const counts = images.reduce((acc, item) => {
-  acc[item.image] = { total: 0, twoMatch: 0, threeMatch: 0, fourMatch: 0, fiveMatch: 0, noMatch: 0 };
-  return acc;
-}, {});
+// // Initialize counts for each image
+// const counts = images.reduce((acc, item) => {
+//   acc[item.image] = { total: 0, twoMatch: 0, threeMatch: 0, fourMatch: 0, fiveMatch: 0, noMatch: 0 };
+//   return acc;
+// }, {});
 
-// Adjust weights based on totalSpins
-const calculateAdjustedWeights = (totalSpins) => {
-  const progressiveWeight = (totalSpins / 2000) * 2;
-  return images.map(item => {
-    if (item.image === 'Mina.jpg') {
-      return { ...item, weight: item.weight + progressiveWeight };
-    }
-    return item;
-  });
-};
+// // Adjust weights based on totalSpins
+// const calculateAdjustedWeights = (totalSpins) => {
+//   const progressiveWeight = (totalSpins / 2000) * 2;
+//   return images.map(item => {
+//     if (item.image === 'Mina.jpg') {
+//       return { ...item, weight: item.weight + progressiveWeight };
+//     }
+//     return item;
+//   });
+// };
 
-const totalWeight = images.reduce((sum, item) => sum + item.weight, 0);
+// const totalWeight = images.reduce((sum, item) => sum + item.weight, 0);
 
-images.forEach(item => {
-  item.normalizedProbability = item.weight / totalWeight;
-});
+// images.forEach(item => {
+//   item.normalizedProbability = item.weight / totalWeight;
+// });
 
-const getRandomImage = () => {
-  const rand = Math.random();
-  let cumulativeProbability = 0;
-  for (const item of images) {
-    cumulativeProbability += item.normalizedProbability;
-    if (rand < cumulativeProbability) {
-      return item.image;
-    }
-  }
-  return images[images.length - 1].image; // Fallback to the last image
-};
+// const getRandomImage = () => {
+//   const rand = Math.random();
+//   let cumulativeProbability = 0;
+//   for (const item of images) {
+//     cumulativeProbability += item.normalizedProbability;
+//     if (rand < cumulativeProbability) {
+//       return item.image;
+//     }
+//   }
+//   return images[images.length - 1].image; // Fallback to the last image
+// };
 
-const rollSlots = (betSize, totalSpins) => {
-  const adjustedImages = calculateAdjustedWeights(totalSpins);
-  const totalWeight = adjustedImages.reduce((sum, item) => sum + item.weight, 0);
-  adjustedImages.forEach(item => {
-    item.normalizedProbability = item.weight / totalWeight;
-  });
+// const rollSlots = (betSize, totalSpins) => {
+//   const adjustedImages = calculateAdjustedWeights(totalSpins);
+//   const totalWeight = adjustedImages.reduce((sum, item) => sum + item.weight, 0);
+//   adjustedImages.forEach(item => {
+//     item.normalizedProbability = item.weight / totalWeight;
+//   });
 
-  const getRandomImageAdjusted = () => {
-    const rand = Math.random();
-    let cumulativeProbability = 0;
-    for (const item of adjustedImages) {
-      cumulativeProbability += item.normalizedProbability;
-      if (rand < cumulativeProbability) {
-        return item.image;
-      }
-    }
-    return adjustedImages[adjustedImages.length - 1].image; // Fallback to the last image
-  };
+//   const getRandomImageAdjusted = () => {
+//     const rand = Math.random();
+//     let cumulativeProbability = 0;
+//     for (const item of adjustedImages) {
+//       cumulativeProbability += item.normalizedProbability;
+//       if (rand < cumulativeProbability) {
+//         return item.image;
+//       }
+//     }
+//     return adjustedImages[adjustedImages.length - 1].image; // Fallback to the last image
+//   };
 
-  const slots = [
-    getRandomImageAdjusted(),
-    getRandomImageAdjusted(),
-    getRandomImageAdjusted(),
-    getRandomImageAdjusted(),
-    getRandomImageAdjusted(),
-  ];
+//   const slots = [
+//     getRandomImageAdjusted(),
+//     getRandomImageAdjusted(),
+//     getRandomImageAdjusted(),
+//     getRandomImageAdjusted(),
+//     getRandomImageAdjusted(),
+//   ];
 
-  return slots;
-};
+//   return slots;
+// };
 
-const checkMatches = (slots, betSize) => {
-  const slotCounts = slots.reduce((acc, slot) => {
-    acc[slot] = (acc[slot] || 0) + 1;
-    return acc;
-  }, {});
+// const checkMatches = (slots, betSize) => {
+//   const slotCounts = slots.reduce((acc, slot) => {
+//     acc[slot] = (acc[slot] || 0) + 1;
+//     return acc;
+//   }, {});
 
-  Object.keys(slotCounts).forEach(image => {
-    const count = slotCounts[image];
-    counts[image].total += 1;
-    if (count === 5) {
-      counts[image].fiveMatch += 1;
-    } else if (count === 4) {
-      counts[image].fourMatch += 1;
-    } else if (count === 3) {
-      counts[image].threeMatch += 1;
-    } else if (count === 2) {
-      counts[image].twoMatch += 1;
-    } else if (count === 1) {
-      counts[image].noMatch += 1;
-    }
-  });
+//   Object.keys(slotCounts).forEach(image => {
+//     const count = slotCounts[image];
+//     counts[image].total += 1;
+//     if (count === 5) {
+//       counts[image].fiveMatch += 1;
+//     } else if (count === 4) {
+//       counts[image].fourMatch += 1;
+//     } else if (count === 3) {
+//       counts[image].threeMatch += 1;
+//     } else if (count === 2) {
+//       counts[image].twoMatch += 1;
+//     } else if (count === 1) {
+//       counts[image].noMatch += 1;
+//     }
+//   });
 
-  const firstSlotSrc = slots[0];
-  const allMatch = slots.every(slot => slot === firstSlotSrc);
+//   const firstSlotSrc = slots[0];
+//   const allMatch = slots.every(slot => slot === firstSlotSrc);
 
-  if (allMatch) {
-    let payout;
-    switch (firstSlotSrc) {
-      case 'Mina.jpg':
-        payout = betSize * 5000;
-        break;
-      case 'Thao.jpg':
-        payout = betSize * 3500;
-        break;
-      case 'Group.jpg':
-        payout = betSize * 2500;
-        break;
-      case 'Kevin.jpg':
-        payout = betSize * 2000;
-        break;
-      case 'JJKev.jpg':
-        payout = betSize * 1500;
-        break;
-      case 'TonyAlex.jpg':
-        payout = betSize * 750;
-        break;
-      case 'Jose.jpg':
-        payout = betSize * 500;
-        break;
-      case 'John.jpg':
-        payout = betSize * 250;
-        break;
-      case 'Hyerim.jpg':
-        payout = betSize * 100;
-        break;
-      default:
-        payout = 0;
-    }
-    return payout;
-  } else {
-    return 0;
-  }
-};
+//   if (allMatch) {
+//     let payout;
+//     switch (firstSlotSrc) {
+//       case 'Mina.jpg':
+//         payout = betSize * 5000;
+//         break;
+//       case 'Thao.jpg':
+//         payout = betSize * 3500;
+//         break;
+//       case 'Group.jpg':
+//         payout = betSize * 2500;
+//         break;
+//       case 'Kevin.jpg':
+//         payout = betSize * 2000;
+//         break;
+//       case 'JJKev.jpg':
+//         payout = betSize * 1500;
+//         break;
+//       case 'TonyAlex.jpg':
+//         payout = betSize * 750;
+//         break;
+//       case 'Jose.jpg':
+//         payout = betSize * 500;
+//         break;
+//       case 'John.jpg':
+//         payout = betSize * 250;
+//         break;
+//       case 'Hyerim.jpg':
+//         payout = betSize * 100;
+//         break;
+//       default:
+//         payout = 0;
+//     }
+//     return payout;
+//   } else {
+//     return 0;
+//   }
+// };
 
-// Simulate slot machine
-const simulateSlots = (numSimulations, betSize) => {
-  let totalCredits = 0;
-  for (let i = 0; i < numSimulations; i++) {
-    const slots = rollSlots(betSize, i);
-    const winnings = checkMatches(slots, betSize);
-    totalCredits += winnings - betSize; // Subtract the bet size for each spin
-  }
+// // Simulate slot machine
+// const simulateSlots = (numSimulations, betSize) => {
+//   let totalCredits = 0;
+//   for (let i = 0; i < numSimulations; i++) {
+//     const slots = rollSlots(betSize, i);
+//     const winnings = checkMatches(slots, betSize);
+//     totalCredits += winnings - betSize; // Subtract the bet size for each spin
+//   }
 
-  // Display results
-  Object.keys(counts).forEach(image => {
-    const total = counts[image].total;
-    if (total === 0) return; // Avoid division by zero
+//   // Display results
+//   Object.keys(counts).forEach(image => {
+//     const total = counts[image].total;
+//     if (total === 0) return; // Avoid division by zero
 
-    const twoMatchPercent = ((counts[image].twoMatch / total) * 100).toFixed(2);
-    const threeMatchPercent = ((counts[image].threeMatch / total) * 100).toFixed(2);
-    const fourMatchPercent = ((counts[image].fourMatch / total) * 100).toFixed(2);
-    const fiveMatchPercent = ((counts[image].fiveMatch / total) * 100).toFixed(2);
-    const noMatchPercent = ((counts[image].noMatch / total) * 100).toFixed(2);
+//     const twoMatchPercent = ((counts[image].twoMatch / total) * 100).toFixed(2);
+//     const threeMatchPercent = ((counts[image].threeMatch / total) * 100).toFixed(2);
+//     const fourMatchPercent = ((counts[image].fourMatch / total) * 100).toFixed(2);
+//     const fiveMatchPercent = ((counts[image].fiveMatch / total) * 100).toFixed(2);
+//     const noMatchPercent = ((counts[image].noMatch / total) * 100).toFixed(2);
 
-    console.log(`${image}:`);
-    console.log(`  Total occurrences: ${total}`);
-    console.log(`  Five match: ${counts[image].fiveMatch} times (${fiveMatchPercent}%)`);
-    console.log(`  Four match: ${counts[image].fourMatch} times (${fourMatchPercent}%)`);
-    console.log(`  Three match: ${counts[image].threeMatch} times (${threeMatchPercent}%)`);
-    console.log(`  Two match: ${counts[image].twoMatch} times (${twoMatchPercent}%)`);
-    console.log(`  No match: ${counts[image].noMatch} times (${noMatchPercent}%)`);
-  });
+//     console.log(`${image}:`);
+//     console.log(`  Total occurrences: ${total}`);
+//     console.log(`  Five match: ${counts[image].fiveMatch} times (${fiveMatchPercent}%)`);
+//     console.log(`  Four match: ${counts[image].fourMatch} times (${fourMatchPercent}%)`);
+//     console.log(`  Three match: ${counts[image].threeMatch} times (${threeMatchPercent}%)`);
+//     console.log(`  Two match: ${counts[image].twoMatch} times (${twoMatchPercent}%)`);
+//     console.log(`  No match: ${counts[image].noMatch} times (${noMatchPercent}%)`);
+//   });
 
-  return totalCredits;
-};
+//   return totalCredits;
+// };
 
-const numSimulations = 10000;
-const betSize = 1; // Adjust bet size as needed
-const totalCredits = simulateSlots(numSimulations, betSize);
+// const numSimulations = 10000;
+// const betSize = 1; // Adjust bet size as needed
+// const totalCredits = simulateSlots(numSimulations, betSize);
 
-console.log(`Total credits after ${numSimulations} simulations: ${totalCredits}`);
+// console.log(`Total credits after ${numSimulations} simulations: ${totalCredits}`);

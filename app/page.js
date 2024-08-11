@@ -12,6 +12,7 @@ import TonyAlex from '../public/assets/slotItems/TonyAlex.jpg';
 import JJKev from '../public/assets/slotItems/JJKev.jpg';
 import Odds from '../public/assets/modalPictures/Odds.jpg';
 import Paytable from '../public/assets/modalPictures/Paytable.jpg';
+import Angel from '../public/assets/modalPictures/Angel.jpg';
 import Image from 'next/image';
 import Modal from './components/Modal';
 
@@ -46,7 +47,7 @@ export default function Home() {
       setPassword('');
       alert('100 Credits Added!');
     } else if (password === tempPassword) {
-      setCredits(100);
+      setCredits(1);
       setPassword('');
     } else {
       alert('Incorrect password. Please try again.');
@@ -213,33 +214,33 @@ export default function Home() {
         console.log('all matches!', firstSlotSrc)
         if (firstSlotSrc.includes('Mina')) {
           playJackpotSound();
-          setCredits(credits + (betSize * 5000));
+          setCredits(credits + (betSize * 5000) - betSize);
         } else {
           playRandomSound();
         }
         if (firstSlotSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 3500));
+          setCredits(credits + (betSize * 3500) - betSize);
           result(betSize * 3500);
         } else if (firstSlotSrc.includes('Group')) {
-          setCredits(credits + (betSize * 2500));
+          setCredits(credits + (betSize * 2500) - betSize);
           result(betSize * 2500);
         } else if (firstSlotSrc.includes('Kevin')) {
-          setCredits(credits + (betSize * 2000));
+          setCredits(credits + (betSize * 2000) - betSize);
           result(betSize * 2000);
         } else if (firstSlotSrc.includes('JJKev')) {
-          setCredits(credits + (betSize * 1500));
+          setCredits(credits + (betSize * 1500) - betSize);
           result(betSize * 1500);
         } else if (firstSlotSrc.includes('TonyAlex')) {
-          setCredits(credits + (betSize * 750));
+          setCredits(credits + (betSize * 750) - betSize);
           result(betSize * 750);
         } else if (firstSlotSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 500));
+          setCredits(credits + (betSize * 500) - betSize);
           result(betSize * 500);
         } else if (firstSlotSrc.includes('John')) {
-          setCredits(credits + (betSize * 250));
+          setCredits(credits + (betSize * 250) - betSize);
           result(betSize * 250);
         } else if (firstSlotSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 100));
+          setCredits(credits + (betSize * 100) - betSize);
           result(betSize * 100);
         }
       }
@@ -265,34 +266,34 @@ export default function Home() {
         console.log('Four matches!!', matchedSrc);
         if (matchedSrc.includes('Mina')) {
           playJackpotSound();
-          setCredits(credits + (betSize * 750));
+          setCredits(credits + (betSize * 750) - betSize);
           result(betSize * 750);
         } else {
           playRandomSound();
         }
         if (matchedSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 500));
+          setCredits(credits + (betSize * 500) - betSize);
           result(betSize * 500);
         } else if (matchedSrc.includes('Group')) {
-          setCredits(credits + (betSize * 300));
+          setCredits(credits + (betSize * 300) - betSize);
           result(betSize * 300);
         } else if (matchedSrc.includes('Kevin')) {
-          setCredits(credits + (betSize * 200));
+          setCredits(credits + (betSize * 200) - betSize);
           result(betSize * 200);
         } else if (matchedSrc.includes('JJKev')) {
-          setCredits(credits + (betSize * 125));
+          setCredits(credits + (betSize * 125) - betSize);
           result(betSize * 125);
         } else if (matchedSrc.includes('TonyAlex')) {
-          setCredits(credits + (betSize * 100));
+          setCredits(credits + (betSize * 100) - betSize);
           result(betSize * 100);
         } else if (matchedSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 75));
+          setCredits(credits + (betSize * 75) - betSize);
           result(betSize * 75);
         } else if (matchedSrc.includes('John')) {
-          setCredits(credits + (betSize * 50));
+          setCredits(credits + (betSize * 50) - betSize);
           result(betSize * 50);
         } else if (matchedSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 30));
+          setCredits(credits + (betSize * 30) - betSize);
           result(betSize * 30);
         }
       }
@@ -334,35 +335,35 @@ export default function Home() {
         console.log('Three matches!!', matchedSrc);
         if (matchedSrc.includes('Mina')) {
           playJackpotSound();
-          setCredits(credits + (betSize * 250));
+          setCredits(credits + (betSize * 250) - betSize);
           result(betSize * 250);
         } else {
           playRandomSound();
         }
         if (matchedSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 175));
-          result(betSize * 175);
+          setCredits(credits + (betSize * 100) - betSize);
+          result(betSize * 100);
         } else if (matchedSrc.includes('Group')) {
-          setCredits(credits + (betSize * 125));
-          result(betSize * 125);
-        } else if (matchedSrc.includes('Kevin')) {
-          setCredits(credits + (betSize * 75));
-          result(betSize * 75);
-        } else if (matchedSrc.includes('JJKev')) {
-          setCredits(credits + (betSize * 50));
+          setCredits(credits + (betSize * 50) - betSize);
           result(betSize * 50);
-        } else if (matchedSrc.includes('TonyAlex')) {
-          setCredits(credits + (betSize * 25));
+        } else if (matchedSrc.includes('Kevin')) {
+          setCredits(credits + (betSize * 25) - betSize);
           result(betSize * 25);
-        } else if (matchedSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 15));
+        } else if (matchedSrc.includes('JJKev')) {
+          setCredits(credits + (betSize * 15) - betSize);
           result(betSize * 15);
-        } else if (matchedSrc.includes('John')) {
-          setCredits(credits + (betSize * 10));
+        } else if (matchedSrc.includes('TonyAlex')) {
+          setCredits(credits + (betSize * 10) - betSize);
           result(betSize * 10);
-        } else if (matchedSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 5));
+        } else if (matchedSrc.includes('Jose')) {
+          setCredits(credits + (betSize * 5) - betSize);
           result(betSize * 5);
+        } else if (matchedSrc.includes('John')) {
+          setCredits(credits + (betSize * 3) - betSize);
+          result(betSize * 3);
+        } else if (matchedSrc.includes('Hyerim')) {
+          setCredits(credits + (betSize * 2) - betSize);
+          result(betSize * 2);
         }
       }
       else {
@@ -446,7 +447,13 @@ export default function Home() {
       <h1 className='text-4xl font-extrabold mt-20 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center border-4 border-white'>
         Happy Birthday Chloe!
       </h1>
-      <button onClick={playJackpotSound}>test</button>
+      <div className="top-10 left-10 absolute">
+        <Modal
+          modalTitle='How to play'
+          modalText='Give 100 chips to the House to recieve in game credits. Once you have credits, you can play! Decide how many credits you want to bet by clicking the appropriate Bet x button.'
+          modalTextTwo='WARNING: Do NOT refresh the page or you will lost ALL your credits. The house is NOT responsible for any loss of credits. Have fun!'
+          modalImage={Angel} />
+      </div>
       <div className='mt-20'>
         <h2 className='text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
           Number of credits: {credits}
@@ -467,28 +474,22 @@ export default function Home() {
             ))}
           </div>
           <button
-            onClick={() => rollSlots(1)}
-            disabled={rolling}
-            className="mx-2 p-3 bg-gradient-to-r from-yellow-500 to-yellow-700 text-white font-bold rounded shadow-lg hover:from-yellow-600 hover:to-yellow-800 transition-colors duration-300">
-            Spin 1!
-          </button>
-          <button
             onClick={() => rollSlots(5)}
             disabled={rolling}
             className="mx-2 p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold rounded shadow-md hover:from-yellow-500 hover:to-yellow-700 transition-colors duration-300">
-            Spin 5!
+            Bet 5
           </button>
           <button
             onClick={() => rollSlots(10)}
             disabled={rolling}
             className="mx-2 p-3 bg-gradient-to-r from-yellow-300 to-yellow-500 text-white font-bold rounded shadow-md hover:from-yellow-400 hover:to-yellow-600 transition-colors duration-300">
-            Spin 10!
+            Bet 10
           </button>
           <button
-            onClick={() => rollSlots(100)}
+            onClick={() => rollSlots(50)}
             disabled={rolling}
             className="mx-2 p-3 bg-gradient-to-r from-yellow-300 to-yellow-500 text-white font-bold rounded shadow-md hover:from-yellow-400 hover:to-yellow-600 transition-colors duration-300">
-            Spin 100!
+            Bet 50
           </button>
           <style jsx>{`
         .slot {
