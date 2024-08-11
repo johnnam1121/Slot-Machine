@@ -10,8 +10,8 @@ import Mina from '../public/assets/slotItems/Mina.jpg';
 import Jose from '../public/assets/slotItems/Jose.jpg';
 import TonyAlex from '../public/assets/slotItems/TonyAlex.jpg';
 import JJKev from '../public/assets/slotItems/JJKev.jpg';
-import Odds from '../public/assets/Odds.jpg';
-import Paytable from '../public/assets/Paytable.jpg';
+import Odds from '../public/assets/modalPictures/Odds.jpg';
+import Paytable from '../public/assets/modalPictures/Paytable.jpg';
 import Image from 'next/image';
 import Modal from './components/Modal';
 
