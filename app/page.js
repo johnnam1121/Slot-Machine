@@ -544,6 +544,9 @@ export default function Home() {
             modalImage={Odds} />
         </div>
       </div>
+      <div className='bottom-0 absolute text-center justify-center'>
+        <p className='text-sm opacity-50'>&copy; 2024 John Nam. All rights reserved. | <a href="/privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
+      </div>
     </div >
   )
 }
