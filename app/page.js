@@ -46,7 +46,7 @@ export default function Home() {
       setPassword('');
       alert('100 Credits Added!');
     } else if (password === tempPassword) {
-      setCredits(1);
+      setCredits(100);
       setPassword('');
     } else {
       alert('Incorrect password. Please try again.');
