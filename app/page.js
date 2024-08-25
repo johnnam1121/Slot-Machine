@@ -43,9 +43,9 @@ export default function Home() {
 
   const handleCreditIncrease = () => {
     if (password === correctPassword) {
-      setCredits(100);
+      setCredits(200);
       setPassword('');
-      alert('100 Credits Added!');
+      alert('200 Credits Added!');
     } else if (password === tempPassword) {
       setCredits(1);
       setPassword('');
@@ -399,9 +399,9 @@ export default function Home() {
   };
   const playLoseSound = () => {
     if (typeof window !== 'undefined') {
-      if (Math.random() < 0.75) {
-        return;
-      }
+      // if (Math.random() < 0.75) {
+      //   return;
+      // }
       const loseSound = loseSounds[Math.floor(Math.random() * loseSounds.length)];
       if (loseSound) {
         loseSound.volume = 1;
@@ -444,9 +444,27 @@ export default function Home() {
 
   return (
     <div style={backgroundImageStyle}>
-      <h1 className='text-4xl font-extrabold mt-20 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center border-4 border-white'>
+      <h1 className='text-2xl font-extrabold mt-5 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center border-4 border-white'>
         Happy Birthday Chloe!
       </h1>
+      {/* need more credits */}
+      <div className='absolute top-5 right-5 text-center bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
+        <button
+          onClick={handleCreditIncrease}
+          className='text-xl font-bold text-center'
+        >
+          Need more credits?
+        </button>
+        <input
+          type='password'
+          placeholder='Enter password'
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          onKeyDown={handleKeyDown}
+          className='flex text-xl font-bold bg-gray-600 bg-opacity-75 rounded-lg shadow-lg mt-2 p-3 text-center'
+        />
+      </div>
+
       <div className="top-10 left-10 absolute">
         <Modal
           modalTitle='How to play'
@@ -454,11 +472,13 @@ export default function Home() {
           modalTextTwo='WARNING: Do NOT refresh the page or you will lost ALL your credits. The house is NOT responsible for any loss of credits. Have fun!'
           modalImage={Angel} />
       </div>
-      <div className='mt-20'>
-        <h2 className='text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
+      {/* number of credits */}
+      <div className='mt-5'>
+        <h2 className='text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-2 text-center '>
           Number of credits: {credits}
         </h2>
       </div>
+      {/* slots */}
       <div>
         <div style={{ textAlign: 'center', marginTop: '50px' }}>
           <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
@@ -468,11 +488,17 @@ export default function Home() {
                   id={`slot${index}`}
                   src={slot.src}
                   alt={`slot-${index}`}
-                  style={{ width: '500px', height: '500px', objectFit: 'cover' }}
+                  style={{ width: '500px', height: '250px', objectFit: 'cover' }}
                 />
               </div>
             ))}
           </div>
+          <button
+            onClick={() => rollSlots(1)}
+            disabled={rolling}
+            className="mx-2 p-3 bg-gradient-to-r from-yellow-400 to-yellow-600 text-white font-bold rounded shadow-md hover:from-yellow-500 hover:to-yellow-700 transition-colors duration-300">
+            Bet 1
+          </button>
           <button
             onClick={() => rollSlots(5)}
             disabled={rolling}
@@ -516,25 +542,9 @@ export default function Home() {
             modalImage={Paytable} />
         </div>
         <div>
-          <h2 id='Result' className='mb-2 mt-16 text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
+          <h2 id='Result' className='mb-2 mt-4 text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center '>
             Good Luck!
           </h2>
-          <div className='text-center bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
-            <button
-              onClick={handleCreditIncrease}
-              className='text-xl font-bold text-center'
-            >
-              Need more credits?
-            </button>
-            <input
-              type='password'
-              placeholder='Enter password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              onKeyDown={handleKeyDown}
-              className='flex text-xl font-bold bg-gray-600 bg-opacity-75 rounded-lg shadow-lg mt-2 p-3 text-center'
-            />
-          </div>
         </div>
         <div className="flex items-center justify-center mx-10 text-center">
           <Modal
@@ -544,7 +554,7 @@ export default function Home() {
             modalImage={Odds} />
         </div>
       </div>
-      <div className='bottom-0 absolute text-center justify-center'>
+      <div className='mt-5 text-center justify-center'>
         <p className='text-sm opacity-50'>&copy; 2024 John Nam. All rights reserved. | <a href="/privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
       </div>
     </div >
