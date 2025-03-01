@@ -31,7 +31,6 @@ export default function Home() {
     backgroundImage: `url(${background.src})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: '100vh',
     color: 'white',
     margin: 0,
     padding: 0,
@@ -39,6 +38,7 @@ export default function Home() {
     flexDirection: 'column',
     alignItems: 'center',
     position: 'relative',
+    minHeight: '100vh'
   };
 
   const handleCreditIncrease = () => {
@@ -448,23 +448,18 @@ export default function Home() {
         Happy Birthday Chloe!
       </h1>
       {/* need more credits */}
-      <div className='absolute top-5 right-5 text-center bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
-        <button
-          onClick={handleCreditIncrease}
-          className='text-xl font-bold text-center'
-        >
-          Need more credits?
-        </button>
+      <div className='absolute top-5 right-5 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
+        <p className='text-xl font-bold'>Need more credits?</p>
         <input
           type='password'
-          placeholder='Enter password'
+          placeholder='Password'
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           onKeyDown={handleKeyDown}
-          className='flex text-xl font-bold bg-gray-600 bg-opacity-75 rounded-lg shadow-lg mt-2 p-3 text-center'
+          className='w-48 p-2 flex text-xl font-bold bg-gray-600 bg-opacity-75 rounded-lg shadow-lg'
         />
       </div>
-
+      {/* How to play */}
       <div className="top-10 left-10 absolute">
         <Modal
           modalTitle='How to play'
@@ -472,6 +467,7 @@ export default function Home() {
           modalTextTwo='WARNING: Do NOT refresh the page or you will lost ALL your credits. The house is NOT responsible for any loss of credits. Have fun!'
           modalImage={Angel} />
       </div>
+
       {/* number of credits */}
       <div className='mt-5'>
         <h2 className='text-2xl font-bold bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-2 text-center '>
@@ -480,15 +476,15 @@ export default function Home() {
       </div>
       {/* slots */}
       <div>
-        <div style={{ textAlign: 'center', marginTop: '50px' }}>
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <div className='text-center mt-5'>
+          <div className='flex justify-center mb-5'>
             {slots.map((slot, index) => (
               <div key={index} className={`slot ${rolling ? 'rolling' : ''}`}>
                 <img
                   id={`slot${index}`}
                   src={slot.src}
                   alt={`slot-${index}`}
-                  style={{ width: '500px', height: '250px', objectFit: 'cover' }}
+                  className='w-40 h-40 lg:w-96 lg:h-96 object-cover'
                 />
               </div>
             ))}
@@ -533,7 +529,7 @@ export default function Home() {
       `}</style>
         </div>
       </div>
-      <div className='flex'>
+      <div className='flex mb-10'>
         <div className="flex items-center justify-center mx-10 text-center">
           <Modal
             modalTitle='Paytable Info'
@@ -554,7 +550,7 @@ export default function Home() {
             modalImage={Odds} />
         </div>
       </div>
-      <div className='mt-5 text-center justify-center'>
+      <div className='absolute bottom-0 text-center justify-center'>
         <p className='text-sm opacity-50'>&copy; 2024 John Nam. All rights reserved. | <a href="/privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a></p>
       </div>
     </div >
