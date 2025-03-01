@@ -214,34 +214,34 @@ export default function Home() {
         console.log('all matches!', firstSlotSrc)
         if (firstSlotSrc.includes('Mina')) {
           playJackpotSound();
-          setCredits(credits + (betSize * 5000) - betSize);
+          setCredits(credits + (betSize * 2500) - betSize);
         } else {
           playRandomSound();
         }
         if (firstSlotSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 3500) - betSize);
-          result(betSize * 3500);
+          setCredits(credits + (betSize * 1750) - betSize);
+          result(betSize * 1750);
         } else if (firstSlotSrc.includes('Group')) {
-          setCredits(credits + (betSize * 2500) - betSize);
-          result(betSize * 2500);
+          setCredits(credits + (betSize * 1250) - betSize);
+          result(betSize * 1250);
         } else if (firstSlotSrc.includes('Kevin')) {
-          setCredits(credits + (betSize * 2000) - betSize);
-          result(betSize * 2000);
+          setCredits(credits + (betSize * 1000) - betSize);
+          result(betSize * 1000);
         } else if (firstSlotSrc.includes('JJKev')) {
-          setCredits(credits + (betSize * 1500) - betSize);
-          result(betSize * 1500);
-        } else if (firstSlotSrc.includes('TonyAlex')) {
           setCredits(credits + (betSize * 750) - betSize);
           result(betSize * 750);
+        } else if (firstSlotSrc.includes('TonyAlex')) {
+          setCredits(credits + (betSize * 375) - betSize);
+          result(betSize * 375);
         } else if (firstSlotSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 500) - betSize);
-          result(betSize * 500);
-        } else if (firstSlotSrc.includes('John')) {
           setCredits(credits + (betSize * 250) - betSize);
           result(betSize * 250);
+        } else if (firstSlotSrc.includes('John')) {
+          setCredits(credits + (betSize * 125) - betSize);
+          result(betSize * 125);
         } else if (firstSlotSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 100) - betSize);
-          result(betSize * 100);
+          setCredits(credits + (betSize * 50) - betSize);
+          result(betSize * 50);
         }
       }
       // 4 matches
@@ -266,35 +266,35 @@ export default function Home() {
         console.log('Four matches!!', matchedSrc);
         if (matchedSrc.includes('Mina')) {
           playJackpotSound();
-          setCredits(credits + (betSize * 750) - betSize);
-          result(betSize * 750);
+          setCredits(credits + (betSize * 375) - betSize);
+          result(betSize * 375);
         } else {
           playRandomSound();
         }
         if (matchedSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 500) - betSize);
-          result(betSize * 500);
+          setCredits(credits + (betSize * 250) - betSize);
+          result(betSize * 250);
         } else if (matchedSrc.includes('Group')) {
-          setCredits(credits + (betSize * 300) - betSize);
-          result(betSize * 300);
+          setCredits(credits + (betSize * 150) - betSize);
+          result(betSize * 150);
         } else if (matchedSrc.includes('Kevin')) {
-          setCredits(credits + (betSize * 200) - betSize);
-          result(betSize * 200);
-        } else if (matchedSrc.includes('JJKev')) {
-          setCredits(credits + (betSize * 125) - betSize);
-          result(betSize * 125);
-        } else if (matchedSrc.includes('TonyAlex')) {
           setCredits(credits + (betSize * 100) - betSize);
           result(betSize * 100);
-        } else if (matchedSrc.includes('Jose')) {
-          setCredits(credits + (betSize * 75) - betSize);
-          result(betSize * 75);
-        } else if (matchedSrc.includes('John')) {
+        } else if (matchedSrc.includes('JJKev')) {
+          setCredits(credits + (betSize * 65) - betSize);
+          result(betSize * 65);
+        } else if (matchedSrc.includes('TonyAlex')) {
           setCredits(credits + (betSize * 50) - betSize);
           result(betSize * 50);
+        } else if (matchedSrc.includes('Jose')) {
+          setCredits(credits + (betSize * 37) - betSize);
+          result(betSize * 37);
+        } else if (matchedSrc.includes('John')) {
+          setCredits(credits + (betSize * 25) - betSize);
+          result(betSize * 25);
         } else if (matchedSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 30) - betSize);
-          result(betSize * 30);
+          setCredits(credits + (betSize * 15) - betSize);
+          result(betSize * 15);
         }
       }
       else if (
@@ -335,17 +335,17 @@ export default function Home() {
         console.log('Three matches!!', matchedSrc);
         if (matchedSrc.includes('Mina')) {
           playJackpotSound();
-          setCredits(credits + (betSize * 250) - betSize);
-          result(betSize * 250);
+          setCredits(credits + (betSize * 200) - betSize);
+          result(betSize * 200);
         } else {
           playRandomSound();
         }
         if (matchedSrc.includes('Thao')) {
-          setCredits(credits + (betSize * 100) - betSize);
-          result(betSize * 100);
+          setCredits(credits + (betSize * 80) - betSize);
+          result(betSize * 80);
         } else if (matchedSrc.includes('Group')) {
-          setCredits(credits + (betSize * 50) - betSize);
-          result(betSize * 50);
+          setCredits(credits + (betSize * 35) - betSize);
+          result(betSize * 35);
         } else if (matchedSrc.includes('Kevin')) {
           setCredits(credits + (betSize * 25) - betSize);
           result(betSize * 25);
@@ -362,8 +362,8 @@ export default function Home() {
           setCredits(credits + (betSize * 3) - betSize);
           result(betSize * 3);
         } else if (matchedSrc.includes('Hyerim')) {
-          setCredits(credits + (betSize * 2) - betSize);
-          result(betSize * 2);
+          setCredits(credits + (betSize * 1) - betSize);
+          result(betSize * 1);
         }
       }
       else {
