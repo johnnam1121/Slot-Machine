@@ -26,6 +26,7 @@ export default function Home() {
 
   const correctPassword = 'Benny';
   const tempPassword = 'test';
+  const halfPassword = 'half';
 
   const backgroundImageStyle = {
     backgroundImage: `url(${background.src})`,
@@ -48,6 +49,9 @@ export default function Home() {
       alert('200 Credits Added!');
     } else if (password === tempPassword) {
       setCredits(1);
+      setPassword('');
+    } else if (password === halfPassword) {
+      setCredits(100);
       setPassword('');
     } else {
       alert('Incorrect password. Please try again.');
@@ -445,7 +449,7 @@ export default function Home() {
   return (
     <div style={backgroundImageStyle}>
       <h1 className='text-2xl font-extrabold mt-5 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-5 text-center border-4 border-white'>
-        Happy Birthday Chloe!
+        Casino Night 2025
       </h1>
       {/* need more credits */}
       <div className='absolute top-5 right-5 bg-gray-800 bg-opacity-75 rounded-lg shadow-lg p-3'>
